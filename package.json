@@ -1,0 +1,28 @@
+{
+  "name": "expense-tracker---final-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "migrate:make": "knex migrate:make",
+    "migrate:latest": "knex migrate:latest",
+    "migrate:rollback": "knex migrate:rollback",
+    "seed:make": "knex seed:make",
+    "seed:run": "knex seed:run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmaliaCaldare/Expense-tracker---Final-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmaliaCaldare/Expense-tracker---Final-Project/issues"
+  },
+  "homepage": "https://github.com/AmaliaCaldare/Expense-tracker---Final-Project#readme",
+  "dependencies": {
+    "knex": "^0.21.2",
+    "mysql": "^2.18.1"
+  }
+}
