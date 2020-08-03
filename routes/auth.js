@@ -5,19 +5,60 @@ const User = require('../models/User.js');
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
 
+const fs = require('fs');
+const headerPage = fs.readFileSync('./public/header.html', 'utf8');
+const loginPage = fs.readFileSync('./public/login.html', 'utf8');
+const signupPage = fs.readFileSync('./public/signup.html','utf8');
+
+
+// router.use( function (req, res, next) {
+//     if(req.session.loggedIn) {
+//         res.redirect('/');
+//     }
+//     else {
+//         next();
+//     }
+// });
+
+router.get('/login', (req,res, next) => {
+    return res.send(headerPage + loginPage);
+});
 router.post('/login', (req, res) => {
     const {username, password} = req.body;
     if(username && password) {
         try{
-
+            User.query().select().where('username', username).then(user => {
+                if(user.length > 0) {
+                    bcrypt.compare(password, user[0].password, function(error, result) {
+                        if(error) {
+                            console.log(error);
+                        }
+                        if(result) {
+                            req.session.loggedIn = true;
+                            req.session.username = user[0].username;
+                            req.session.userId = user[0].id;
+                            res.redirect('/dashboard');
+                        }
+                        else {
+                            return res.status(400).send('/login? Wrong username or password');
+                        }
+                    });
+                } else {
+                    return res.status(400).send('/login?Wrong username or password');
+                }
+            })
         } catch (error) {
             return res.status(500).send({response: "Something went wrong with the DB"})
         }
     } else {
         return res.status(400).send({response: "username or password missing"})
     }
-    return res.status(501).send({response: "Not implemented yer"});
+    //return res.redirect('/dashboard');
 });
+
+router.get('/signup', (req, res) => {
+    return res.send(headerPage + signupPage);
+})
 
 router.post('/signup', (req, res) => {
     const {username, email, password} = req.body;
@@ -36,7 +77,7 @@ router.post('/signup', (req, res) => {
                                 email,
                                 password: hashedPassword
                             }).then(createdUser => {
-                                return res.send({response: createdUser});
+                                return res.redirect("/login");
                             })
                         })
                        
@@ -52,7 +93,12 @@ router.post('/signup', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-    return res.status(501).send({response: " "});
+    req.session.destroy(function(error) {
+        if(error) {
+            res.negotiate(error);
+        }
+        res.redirect('/login');
+    });
 });
 
 module.exports = router;

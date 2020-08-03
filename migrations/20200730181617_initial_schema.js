@@ -14,7 +14,7 @@ exports.up = function(knex) {
       table.increments('id');
       table.date('expense_date').notNullable();
       table.string('expense_item').notNullable();
-      table.string('expense_cost').notNullable();
+      table.integer('expense_cost').notNullable();
 
       table.integer('user_id').unsigned().notNullable()
       table.foreign('user_id').references('users.id');
@@ -26,7 +26,7 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists('users')
-    .dropTableIfExists('expenses');
+    .dropTableIfExists('expenses')
+    .dropTableIfExists('users');
   
 };

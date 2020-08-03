@@ -1,0 +1,56 @@
+body{
+    text-align: center;
+    background: gainsboro;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+.header {
+    text-align: left;
+    background-color: black;
+    color: cadetblue;
+    width: 100%;
+    height: 75px;
+}
+
+.container-form{
+    background-color: white;
+    width: 300px;
+    padding: 50px;
+    margin-top: 35px;
+    display: inline-block;
+    border: 3px solid white;
+}
+.form-group {
+    text-align: left;
+}
+
+.form-group:hover{
+    border-color: cadetblue;
+}
+.btn-primary{
+    border-color: cadetblue;
+    background-color: cadetblue;
+    color: black;
+}
+.btn-primary:hover{
+    border-color: cadetblue;
+    background-color: cadetblue;
+    color: black;
+}
+.signup{
+  margin-top: 10px;
+}
+
+#signup{
+    color: black;
+    border: 1px solid cadetblue;
+    text-decoration: none;
+    background-color: cadetblue;
+
+}
+.navbar bg-light {
+    width: 175px;
+    border: 1px solid white;
+    background-color: white;
+}
