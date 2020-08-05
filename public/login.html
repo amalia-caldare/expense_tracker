@@ -1,5 +1,5 @@
 <div class="container-form">
-    <form action = "/login" method = "POST" name = 'loginform'>
+    <form action = "/login" method = "POST" name = 'loginform' onsubmit="return validateLogin()">
         <h2>Log in</h2>
         <div class = "form-group">
             <label for="username">Username</label>
@@ -16,5 +16,19 @@
         <a id="signup" href="/signup" > Sign up</a>
     </div>
 </div>
-</body>
-</html>
+<script>
+    function validateLogin() {
+        const password = document.forms.loginform.password.value;
+        if(password.length < 8) {
+            alert("Password must be 8 characters or longer.");
+            return false;
+        }
+        return true;
+  }
+
+    const errorMessage = window.location.search;
+    if(errorMessage) {
+      alert("Wrong username or password.");
+}
+
+</script>

@@ -1,5 +1,5 @@
 <div class="container-form">
-    <form action = "/signup" method = "POST" name = 'signupform'>
+    <form action = "/signup" method = "POST" name = 'signupform' onsubmit="return validateSignup()">
         <h2>Sign up</h2>
         <div class = "form-group">
             <label for="username">Username</label>
@@ -16,3 +16,19 @@
           <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<script>
+    function validateSignup() {
+        const password = document.forms.signupform.password.value;
+        if(password.length < 9) {
+            alert("Password must be 8 characters or longer.");
+            return false;
+        }
+        return true;
+  }
+
+const errorMessage = window.location.search;
+if(errorMessage) {
+    alert("User already exists");
+}
+
+</script>

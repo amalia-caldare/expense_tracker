@@ -2,7 +2,8 @@ $(document).ready(() => {
     $.get('/user-details/', details => {
         $('#username').attr('value', details.userDetails[0].username);
         $('#email').attr('value', details.userDetails[0].email);
-        $('#registration-date').attr('value', details.userDetails[0].createdAt);
+        date = details.userDetails[0].createdAt.substring(0,10);
+        $('#registration-date').attr('value', date);
     })
 })
 

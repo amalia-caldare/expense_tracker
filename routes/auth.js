@@ -9,6 +9,7 @@ const fs = require('fs');
 const headerPage = fs.readFileSync('./public/header.html', 'utf8');
 const loginPage = fs.readFileSync('./public/login.html', 'utf8');
 const signupPage = fs.readFileSync('./public/signup.html','utf8');
+const footerPage = fs.readFileSync('./public/footer.html','utf8');
 
 
 // router.use( function (req, res, next) {
@@ -21,7 +22,7 @@ const signupPage = fs.readFileSync('./public/signup.html','utf8');
 // });
 
 router.get('/login', (req,res, next) => {
-    return res.send(headerPage + loginPage);
+    return res.send(headerPage + loginPage + footerPage);
 });
 router.post('/login', (req, res) => {
     const {username, password} = req.body;
@@ -40,24 +41,24 @@ router.post('/login', (req, res) => {
                             res.redirect('/dashboard');
                         }
                         else {
-                            return res.status(400).send('/login? Wrong username or password');
+                            return res.status(400).redirect('/login? Wrong username or password');
                         }
                     });
                 } else {
-                    return res.status(400).send('/login?Wrong username or password');
+                    return res.status(400).redirect('/login?Wrong username or password');
                 }
             })
         } catch (error) {
-            return res.status(500).send({response: "Something went wrong with the DB"})
+            return res.status(500).redirect('login?Something went wrong with the DB, try again!');
         }
     } else {
-        return res.status(400).send({response: "username or password missing"})
+        return res.status(400).send({response: "Username or password missing"})
     }
     //return res.redirect('/dashboard');
 });
 
 router.get('/signup', (req, res) => {
-    return res.send(headerPage + signupPage);
+    return res.send(headerPage + signupPage + footerPage);
 })
 
 router.post('/signup', (req, res) => {
@@ -69,7 +70,7 @@ router.post('/signup', (req, res) => {
             try{
                 User.query().select('username').where('username', username).then(foundUser => {
                     if(foundUser.length > 0) {
-                        return res.status(400).send({response: "User already exists"});
+                        return res.status(400).redirect('/signup?User already exists');
                     } else {
                         bcrypt.hash(password, saltRounds).then(hashedPassword => {
                             User.query().insert({
@@ -84,7 +85,7 @@ router.post('/signup', (req, res) => {
                     }
                 })
             } catch (error) {
-                return res.status(500).send({response: "Something went wrong with the DB"})
+                return res.status(500).redirect('/signup?Something went wrong with the DB, try again!');
            }
         }
     } else {

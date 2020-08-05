@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const moment = require('moment');
 
 const User = require('../models/User.js');
 const Expense = require('../models/Expense.js');
@@ -20,11 +19,11 @@ const fs = require('fs');
 const headerPage = fs.readFileSync('./public/header.html', 'utf8');
 const menuPage = fs.readFileSync('./public/menu.html', 'utf8');
 const profilePage = fs.readFileSync('./public/profile.html', 'utf8');
+const footerPage = fs.readFileSync('./public/footer.html','utf8');
 
 router.get('/user-details', (req, res) => {
     try{
         User.query().select().where('id', req.session.userId).then(userDetails => {
-            console.log(userDetails)
             return res.status(200).json({userDetails});
          })
     } catch(error) {
@@ -45,20 +44,10 @@ router.post('/update-user', (req, res) => {
 })
 
 router.get('/profile', requireLogin, (req, res) => {
-    res.send(headerPage + menuPage + profilePage);
+    res.send(headerPage + menuPage + profilePage + footerPage);
 })
 
 
-router.get('/costs', async(req, res) => {
-    const today = moment();
-    //const yesterday = today.subtract(1, 'days');
-   // const thirtyDays = today.subtract(30, 'days');
-   //  console.log(yesterday)
-    const todayExpense = await Expense.query().select('expense_cost').where('expense_date',today.format('YYYY-MM-DD'));
-   // const yesterdayExpense = await Expense.query().select('expense_cost').where('expense_date',yesterday.format('YYYY-MM-DD'));
-   // const thirtyDaysExpense = await Expense.query().select('expense_cost').where('expense_date', thirtyDays.format('YYYY-MM-DD'));
-    return res.json({todayExpense})
-    })
 
 
 module.exports = router;

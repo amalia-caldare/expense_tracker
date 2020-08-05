@@ -1,31 +1,47 @@
-<link rel="stylesheet" type="text/css" href="/css/dashboard.css">
-
-<h1>Dashboard</h1>
-<div class= "d-flex flew-row">
-    <div class = "p-2">
-        <h3>Today's expense</h3>
-        <h4 id="today"></h4>
-    </div>
-    <div class = "p-2">
-        <h3>Today's expense</h3>
-        <h4 id="today"></h4>
-    </div>
-    <div class = "p-2">
-        <h3>Today's expense</h3>
-        <h4 id="today"></h4>
-    </div>
-    <div class = "p-2">
-        <h3>Today's expense</h3>
-        <h4 id="today"></h4>
-    </div>
-    <div class = "p-2">
-        <h3>Today's expense</h3>
-        <h4 id="today"></h4>
-    </div>
-    <div class = "p-2">
-        <h3>Today's expense</h3>
-        <h4 id="today"></h4>
-    </div>
+ <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+<section id="circleBar">
+ 
+    <h1>Dashboard</h1>
+    <h2>Overview of expenses</h2>
+ 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">		
+        <div class="round">
+          <div class="elements">
+            <h1><i id="coins" class="fas fa-coins"></i>Today</h1>
+            <h2 id="today"></h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">		
+        <div class="round">
+          <div class="elements">
+            <h1><i id="coins" class="fas fa-coins"></i>Yesterday </h1>
+            <h2 id="yesterday"></h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3" '>	
+        <div class="round">
+            <div class="elements">
+                <h1><i id="coins" class="fas fa-coins"></i>30 days</h1>
+                <h2 id="30days"></h2>
+            </div>	
+        </div>
+      </div>
+      <div class="col-md-3" '>		
+        <div class="round">
+          <div class="elements">
+            <h1><i id="coins" class="fas fa-coins"></i>Total</h1>
+            <h2 id="total"></h2>
+          </div>
+        </div>
+      </div>
+    </div>	
+  </div>
+</section>
 </div>
-</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.0/circle-progress.min.js'></script>
 <script src="./js/dashboard.js"></script>

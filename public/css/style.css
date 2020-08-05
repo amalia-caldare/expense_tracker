@@ -1,4 +1,4 @@
-body{
+ body{
     text-align: center;
     background: gainsboro;
     font-size: 15px;
@@ -7,10 +7,20 @@ body{
 }
 .header {
     text-align: left;
-    background-color: black;
-    color: cadetblue;
+    background-color: #ee6e73;
+    color: white;
     width: 100%;
     height: 75px;
+    align-items: center;
+}
+.right-content {
+    margin-left: 300px;
+    min-height: 100%;
+    padding-left: 20px;
+}
+h1 {
+    padding-top: 7px;
+    font-size: 40px
 }
 
 .container-form{
@@ -28,29 +38,41 @@ body{
 .form-group:hover{
     border-color: cadetblue;
 }
-.btn-primary{
-    border-color: cadetblue;
-    background-color: cadetblue;
-    color: black;
+.btn-primary, .btn-primary:hover{
+    border-color:#ee6e73;
+    background-color: #ee6e73;
+    color: white;;
 }
-.btn-primary:hover{
-    border-color: cadetblue;
-    background-color: cadetblue;
-    color: black;
-}
+
 .signup{
   margin-top: 10px;
 }
 
 #signup{
-    color: black;
-    border: 1px solid cadetblue;
+    color: white;
+    border: 1px solid#ee6e73;
     text-decoration: none;
-    background-color: cadetblue;
+    background-color: #ee6e73;
 
 }
-.navbar bg-light {
-    width: 175px;
-    border: 1px solid white;
+
+#profile {
+    width: 900px;
+    height: 460px;
+    margin: 100px;
+}
+
+.table {
     background-color: white;
+    width: 900px;
+    height: 400px;
+    margin: 20px;
+   
+}
+.report {
+    margin:100px;
+}
+
+.report #from, #to{
+    font-weight: bold;
 }

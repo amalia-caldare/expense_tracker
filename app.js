@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 
+const server = require('http').createServer(app);
+
+const io = require('socket.io')(server);
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -45,6 +49,17 @@ const knex = Knex(knexfile.development);
 //set up objection with the db knex connection
 Model.knex(knex);
 
+io.on('connection', socket => {
+    // console.log("Socket joined", socket.id);
+
+    // socket.on('disconnect', () => {
+    //     console.log("Socket left", socket.id);
+    // });
+    socket.on('Send message', data => {
+        io.emit("New message", data);
+    })
+})
+
 const authRoute = require('./routes/auth.js');
 const usersRoute = require('./routes/users.js');
 const dashboardRoute = require('./routes/expenses.js');
@@ -54,14 +69,19 @@ app.use(authRoute);
 app.use(usersRoute);
 app.use(dashboardRoute)
 
+const fs = require('fs');
+const chatPage = fs.readFileSync('./public/chat.html', 'utf8');
 
 app.get('/', (req,res)=> {
     return res.redirect('/login');
 })
 
+app.get('/chat', (req, res) => {
+    return res.send(chatPage);
+})
 const PORT = 3000;
 
-app.listen(PORT, (error) => {
+server.listen(PORT, (error) => {
     if(error) {
         console.log(error);
     }
