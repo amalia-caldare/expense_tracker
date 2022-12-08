@@ -24,7 +24,7 @@
   "homepage": "https://github.com/AmaliaCaldare/Expense-tracker---Final-Project#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "express-rate-limit": "^5.1.3",
     "express-session": "^1.17.1",
     "knex": "^0.21.2",
