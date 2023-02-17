@@ -30,7 +30,7 @@
     "knex": "^2.4.0",
     "moment": "^2.27.0",
     "mysql": "^2.18.1",
-    "objection": "^2.2.2",
+    "objection": "^2.2.16",
     "session": "^0.1.0",
     "socket.io": "^2.3.0"
   }
